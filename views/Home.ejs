@@ -17,38 +17,10 @@
       <br />
       <input type="submit" value="Відправити" />
     </form>
-    <!--  -->
-    <header>
-      <h1>My Portfolio - Back-end Developer</h1>
-    </header>
     <main>
-      <section>
-        <h2>About Me</h2>
-        <p>
-          I'm a back-end developer with a passion for building scalable and
-          efficient systems.
-        </p>
-      </section>
-      <section>
-        <h2>Projects</h2>
-        <ul>
-          <li><a href="#">Project 1</a></li>
-          <li><a href="#">Project 2</a></li>
-          <li><a href="#">Project 3</a></li>
-        </ul>
-      </section>
-      <section>
-        <h2>Skills</h2>
-        <ul>
-          <li>Node.js</li>
-          <li>JavaScript</li>
-          <li>Python</li>
-          <li>C++</li>
-        </ul>
-      </section>
+      <%if (error){ %>
+      <h1><%= error %></h1>
+      <%}%>
     </main>
-    <footer>
-      <p>&copy; 2024 My Portfolio</p>
-    </footer>
   </body>
 </html>
