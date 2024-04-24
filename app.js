@@ -3,7 +3,7 @@ const app = express();
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-app.engine("ejs", require("ejs").renderFile);
+app.engine("ejs", require("ejs").renderFile());
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: false }));
