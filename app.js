@@ -32,7 +32,7 @@ app.post("/aa", (req, res) => {
     res.redirect("/");
   } else {
     console.log("error");
-    let error = "геть не той пароль";
+    let error = "геть не той пароль123";
     res.render("Home", { error });
   }
 });
