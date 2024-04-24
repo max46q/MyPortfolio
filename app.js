@@ -22,7 +22,7 @@ app.post("/add", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
 
-  res.render("result", { name, email });
+  res.render("result", { name, email }).end();
 });
 app.post("/aa", (req, res) {
   const { username, password } = req.body;
