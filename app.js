@@ -24,16 +24,12 @@ app.post("/add", (req, res) => {
 
   res.render("result", { name, email });
 });
-app.post("/aa", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  if (username === process.env.USERNAME1 && password === process.env.PASSWORD) {
-    console.log("hello");
-    res.redirect("/");
+app.post("/aa", (req, res) {
+  const { username, password } = req.body;
+  if (username === "admin" && password === "password") {
+    res.send("Logged in!");
   } else {
-    console.log("error");
-    let error = "геть не той пароль123";
-    res.render("Home", { error });
+    res.status(401).send("Invalid username or password.");
   }
 });
 const port = process.env.PORT || 3000;
