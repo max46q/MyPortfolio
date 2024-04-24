@@ -21,7 +21,7 @@ app.get("/base", function (req, res) {
 app.post("/add", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
-  
+
   res.render("result", { name, email });
 });
 app.post("/aa", (req, res) => {
@@ -36,6 +36,6 @@ app.post("/aa", (req, res) => {
     res.render("Home", { error });
   }
 });
-
-app.listen(3000); //port
+const port = process.env.PORT || 3000;
+app.listen(port); //port
 console.log("server started");
