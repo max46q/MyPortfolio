@@ -3,7 +3,7 @@ const app = express();
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-app.engine("ejs", require("ejs").renderFile());
+app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,14 +22,18 @@ app.post("/add", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
 
-  res.render("result", { name, email }).end();
+  res.render("result", { name, email });
 });
-app.post("/aa", (req, res) {
-  const { username, password } = req.body;
-  if (username === "admin" && password === "password") {
-    res.send("Logged in!");
+app.post("/aa", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  if (username === process.env.USERNAME1 && password === process.env.PASSWORD) {
+    console.log("hello");
+    res.redirect("/");
   } else {
-    res.status(401).send("Invalid username or password.");
+    console.log("error");
+    let error = "геть не той пароль123";
+    res.render("Home", { error });
   }
 });
 const port = process.env.PORT || 3000;
