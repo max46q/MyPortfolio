@@ -1,41 +1,48 @@
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
-const bodyParser = require("body-parser");
-require("dotenv").config();
-app.engine("ejs", require("ejs").renderFile);
-app.set("view engine", "ejs");
+const path = require("path");
+const fs = require("fs");
+const dotenv = require("dotenv");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+dotenv.config();
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 app.use(express.static("public"));
 
-app.get("/", function (req, res) {
-  let error = "";
-  res.render("Home", { error }); // відкриває html файл
-});
-
-app.get("/base", function (req, res) {
-  res.render("otherFile");
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
 app.post("/add", (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
+  const { name, email, message } = req.body;
 
-  res.render("result", { name, email });
+  if (!name || !email || !message) {
+    return res.status(400).send("Please fill in all fields.");
+  }
+
+  const data = fs.readFileSync("data.json");
+  const contacts = JSON.parse(data);
+
+  contacts.push({ name, email, message });
+
+  fs.writeFileSync("data.json", JSON.stringify(contacts));
+
+  res.redirect("/");
 });
+
 app.post("/aa", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  if (username === process.env.USERNAME1 && password === process.env.PASSWORD) {
-    console.log("hello");
-    res.redirect("/");
+  const { username, password } = req.body;
+
+  if (username === "admin" && password === "password") {
+    res.send("Logged in!");
   } else {
-    console.log("error");
-    let error = "геть не той пароль123";
-    res.render("Home", { error });
+    res.status(401).send("Invalid username or password.");
   }
 });
-const port = process.env.PORT || 3000;
-app.listen(port); //port
-console.log("server started");
+
+app.listen(3000, () => {
+  console.log("Server started on port 3000");
+});

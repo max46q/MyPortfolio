@@ -1,14 +1,18 @@
 {
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "dotenv": "^16.4.5",
-    "nodemon": "^3.1.0"
-  },
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "description": "My portfolio website",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node index.js"
   },
-  "devDependencies": {
-    "ejs": "^3.1.10",
-    "express": "^4.19.2"
-  }
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "dotenv": "^10.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
 }
