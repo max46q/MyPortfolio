@@ -8,7 +8,6 @@ require("dotenv").config();
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
 //
-const express = require('express');
 //
 
 app.use(bodyParser.urlencoded({ extended: false }));
