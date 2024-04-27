@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 app.get("/", function (req, res) {
   let error = "";
-  res.render("Home", { error }); // відкриває html файл
+  res.render("home", { error }); // відкриває html файл
 });
 
 app.get("/base", function (req, res) {
@@ -38,7 +38,7 @@ app.post("/aa", (req, res) => {
   } else {
     console.log("error");
     let error = "геть не той пароль123";
-    res.render("Home", { error });
+    res.render("home", { error });
   }
 });
 const port = process.env.PORT || 3000;
