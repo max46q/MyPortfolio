@@ -1,8 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
+const Cart = require("../model/Card");
 require("dotenv").config();
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
@@ -25,7 +26,7 @@ app.get("/base", function (req, res) {
 app.post("/add", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
-
+  c
   res.render("result", { name, email });
 });
 app.post("/aa", (req, res) => {
@@ -43,14 +44,14 @@ app.post("/aa", (req, res) => {
 const port = process.env.PORT || 3000;
 console.log("server started");
 
-const start = async() => {
+const start = async () => {
   try {
-    await mongoose.connect(`${process.env.DB_URL}`)
+    await mongoose.connect(`${process.env.DB_URL}`);
     app.listen(port); //port
     console.log("connected to db");
   } catch (e) {
     console.log(e);
   }
-}
+};
 
-start()
+start();
