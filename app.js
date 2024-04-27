@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
+//
+app.use(express.json());
+const home = require("./views/home");
+//
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
