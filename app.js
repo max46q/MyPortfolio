@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 app.get("/", function (req, res) {
   let error = "";
-  res.render("index", { error }); // відкриває html файл
+  res.render("home", { error }); // відкриває html файл
 });
 
 app.get("/base", function (req, res) {
