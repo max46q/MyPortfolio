@@ -13,6 +13,7 @@ app.use(express.static(__dirname + "/views"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
+
 app.get("/", function (req, res) {
   let error = "";
   res.render("home", { error }); // відкриває html файл
