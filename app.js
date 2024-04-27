@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
@@ -7,7 +8,6 @@ app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
 //
 app.use(express.json());
-const home = require("./views/home");
 //
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,5 +41,16 @@ app.post("/aa", (req, res) => {
   }
 });
 const port = process.env.PORT || 3000;
-app.listen(port); //port
 console.log("server started");
+
+const start = async() => {
+  try {
+    await mongoose.connect(`${process.env.DB_URL}`)
+    app.listen(port); //port
+    console.log("connected to db");
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+start()
