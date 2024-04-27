@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
-const Cart = require("../model/Card");
+const Card = require("./model/Card");
 require("dotenv").config();
 app.engine("ejs", require("ejs").renderFile);
 app.set("view engine", "ejs");
@@ -23,10 +23,11 @@ app.get("/base", function (req, res) {
   res.render("otherFile");
 });
 
-app.post("/add", (req, res) => {
+app.post("/add", async (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
-  c
+  const newCard = new Card({ name, email });
+  await newCard.save();
   res.render("result", { name, email });
 });
 app.post("/aa", (req, res) => {

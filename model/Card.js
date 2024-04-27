@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const CartSchema = new Schema({
+const CardSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -10,4 +10,4 @@ const CartSchema = new Schema({
   },
 });
 
-module.exports = model("Cart", CartSchema);
+module.exports = model("Card", CardSchema);
